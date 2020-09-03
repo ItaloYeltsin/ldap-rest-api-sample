@@ -1,0 +1,25 @@
+version: '3'
+services:
+  ldap-server:
+    image: "osixia/openldap:1.3.0"
+    environment:
+      - LDAP_ORGANISATION=My Company
+      - LDAP_DOMAIN=techinterview.com
+      - LDAP_ADMIN_PASSWORD=123456
+    ports:
+      - "389:389"
+    volumes:
+       - ./config:/config
+  rest-api:
+    image: "openjdk:11"
+    ports:
+      - "8080:8080"
+    environment:
+      - spring_profiles_active=docker
+    volumes:
+      - ./ldap-rest-api:/app
+      - ~/.m2:/root/.m2 # avoid download dependencies everytime this service init
+    working_dir: /app
+    command: ["./mvnw", "spring-boot:run", "-Pdocker"]
+    depends_on: 
+      - ldap-server

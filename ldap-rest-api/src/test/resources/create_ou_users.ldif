@@ -1,0 +1,16 @@
+dn: ou=Users,dc=techinterview,dc=com
+changetype: add
+objectClass: organizationalUnit
+objectClass: top
+ou: Users
+
+#Create user
+dn: uid=test,ou=Users,dc=techinterview,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: First
+sn: User
+uid: firstuser
+
