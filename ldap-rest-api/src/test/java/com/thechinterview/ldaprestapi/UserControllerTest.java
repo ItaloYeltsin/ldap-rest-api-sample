@@ -40,6 +40,17 @@ class UserControllerTest {
 	}
 
 	@Test
+	void addInvalidPayload() throws Exception {
+		mockMvc.perform(post(BASE_URL)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\n" +
+						"    \"uid\": \"joao3\",\n" + // missing sn
+						"    \"cn\": \"Barros2\"\n" +
+						"}"))
+				.andExpect(status().is(400));
+	}
+
+	@Test
 	void addAlreadyExistingUser() {
 		try {
 			User existingUser = new User(null, new Date().toString(), "First", "User");

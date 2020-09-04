@@ -6,10 +6,10 @@ import com.thechinterview.ldaprestapi.repository.UserRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.SwaggerDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController()
@@ -27,7 +27,7 @@ public class UserController {
             @ApiResponse(code = 500, message = "Unknown error.")
     })
     @PostMapping()
-    public void addUser(@RequestBody User user) {
+    public void addUser(@Valid @RequestBody User user) {
         System.out.println("user: " + user.getSn() + " " + user.getCn() + " " + user.getUid());
         userRepo.addUser(user);
     }

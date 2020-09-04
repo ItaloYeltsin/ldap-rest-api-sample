@@ -8,6 +8,7 @@ import org.springframework.ldap.odm.annotations.Entry;
 import org.springframework.ldap.odm.annotations.Id;
 
 import javax.naming.Name;
+import javax.validation.constraints.NotBlank;
 import java.util.Formatter;
 
 @AllArgsConstructor
@@ -26,14 +27,17 @@ public class User implements Comparable<User> {
 
     @ApiModelProperty(value = "unique id")
     @Attribute(name="uid")
+    @NotBlank
     private String uid;
 
     @ApiModelProperty(value = "First name")
     @Attribute(name="cn")
+    @NotBlank
     private String cn;
 
     @ApiModelProperty(value = "Last name")
     @Attribute(name="sn")
+    @NotBlank
     private String sn;
 
     @Override
