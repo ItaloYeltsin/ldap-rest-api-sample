@@ -9,7 +9,8 @@ services:
     ports:
       - "389:389"
     volumes:
-       - ./config:/config
+       - ./config:/container/service/slapd/assets/config/bootstrap/ldif/custom
+    command: --copy-service
   rest-api:
     image: "openjdk:11"
     ports:
