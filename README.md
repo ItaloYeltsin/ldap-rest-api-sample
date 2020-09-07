@@ -45,6 +45,30 @@ The default **LDAP_ADMIN_PASSWORD** is *123456* and comes from the `.env` file a
 
 To shutdown the server, execute `docker-compose down`.
 
+### Persisting data
+
+You may wish to persist data even after the container stops. To do so, at your host machine, create the folders `${PATH_TO_YOUR_DATA}/lpad/sldap/database` and `${PATH_TO_YOUR_DATA}/lpad/sldap/config`. Then bind these folders as follows in your `docker-compose.yaml`:
+
+```yaml
+version: '3'
+services:
+  ldap-server:
+    image: "osixia/openldap:1.3.0"
+    .
+    .
+    .
+    volumes:
+        .
+        .
+        .
+        - ${PATH_TO_YOUR_DATA}/lpad/sldap/database:/var/lib/ldap
+        - ${PATH_TO_YOUR_DATA}/lpad/sldap/config:/etc/ldap/slapd.d
+    .
+    .
+    .
+```
+
+
 ## How to see logs
 
 To see the logs, execute the command:
