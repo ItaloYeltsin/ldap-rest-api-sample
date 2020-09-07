@@ -1,9 +1,9 @@
-# Spring Boot LDAP Rest Api
+# Spring Boot LDAP HTTP REST API
 
 <a href="https://codecov.io/github/ItaloYeltsin/ldap-rest-api-sample/?branch=master" rel="some text">![Foo](https://codecov.io/github/ItaloYeltsin/ldap-rest-api-sample/coverage.svg?branch=master)</a>
 
 
-This is an example of a LDAP server with a HTTP REST API interface. This sample illustrates the CRUD of users under **OU** Users to the domain `theinterview.com`. The management of users is made via an HTTP REST API. To learn how to consume the API, see the docs on `http://localhost:8080/swagger-ui/` after starting up the server.
+This is an example of a LDAP server with a HTTP REST API interface. This sample illustrates the CRUD of users under **OU** Users to the domain `theinterview.com`. The management of users is made via a HTTP REST API.
 
 In the subsequent sections you will see: i) how to setup the environment; ii) the commands required to run the server; and iii) how to run tests.
 
@@ -60,3 +60,14 @@ Execute the maven wrapper with the following args:
 ./mvnw test
 ```
 This requires **Java JDK 11** installed.
+
+## HTTP REST API Endpoints
+
+You can see the documentation after starting up your server at `http://localhost:8080/swagger-ui/`. In addition, the table bellow describes each endpoint. 
+
+| Path         | Method | Request Body                                   | Description                                 |
+|--------------|--------|------------------------------------------------|---------------------------------------------|
+| /Users       | POST   | `{ "uid": "john", "cn": "John", "sn": "Doe" }` | Add an user entry.                           |
+| /Users       | GET    | N/A                                            | Retrieve all users.                          |
+| /Users/`<uid>` | GET    | N/A                                            | Retrieve a user entry.given an user `uid`. |
+| /Users/`<uid>` | DELETE | N/A                                            | Delete a user entry. given an user `uid`.   |
